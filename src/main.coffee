@@ -14,21 +14,21 @@ GUY                       = require 'guy'
   praise
   urge
   warn
-  whisper }               = GUY.trm.get_loggers 'DATOM/XEMITTER'
+  whisper }               = GUY.trm.get_loggers 'DATOM/DJEHUTI'
 { rpr
   inspect
   echo
   log     }               = GUY.trm
 #...........................................................................................................
 Emittery                  = require '../deps/emittery.js'
-{ DATOM }                 = require './main'
+{ DATOM }                 = require 'datom'
 { misfit
   get_base_types
   get_xemitter_types }    = require './types'
 
 
 #===========================================================================================================
-class Xemitter
+class Djehuti
 
   #---------------------------------------------------------------------------------------------------------
   constructor: ->
@@ -39,8 +39,8 @@ class Xemitter
     return undefined
 
   #---------------------------------------------------------------------------------------------------------
-  _mark_as_primary: ( x ) => DATOM.wrap_datom '~XEMITTER-preferred', { $key: '~wrapper', $value: x, }
-  _filter_primary:  ( x ) => DATOM.select x,  '~XEMITTER-preferred'
+  _mark_as_primary: ( x ) => DATOM.wrap_datom '~DJEHUTI-preferred', { $key: '~wrapper', $value: x, }
+  _filter_primary:  ( x ) => DATOM.select x,  '~DJEHUTI-preferred'
 
   #---------------------------------------------------------------------------------------------------------
   _get_primary: ( values ) =>
@@ -104,4 +104,4 @@ class Xemitter
 
 
 
-module.exports = { Xemitter, XEMITTER: new Xemitter(), }
+module.exports = { Djehuti, DJEHUTI: new Djehuti(), }
