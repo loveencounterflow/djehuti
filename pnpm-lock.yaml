@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  datom:
+    specifier: ^11.0.0
+    version: 11.0.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(dayjs@1.11.7)(tmp@0.2.1)
   guy:
     specifier: ^13.5.0
     version: 13.5.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(dayjs@1.11.7)(tmp@0.2.1)
@@ -53,6 +56,21 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: false
 
+  /datom@11.0.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(dayjs@1.11.7)(tmp@0.2.1):
+    resolution: {integrity: sha512-ACvExvSaRDDCxs4D6+uu83SSak5LHk4lnZmQKdHZlkKiVkH6U5FuQ0dlCcr2BzHj5EWpkzoBRBiWDfYY7zbdEw==}
+    dependencies:
+      guy: 12.10.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(dayjs@1.11.7)(tmp@0.2.1)
+      intertype: 0.111.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(tmp@0.2.1)
+      letsfreezethat: 3.1.0
+    transitivePeerDependencies:
+      - acorn
+      - acorn-loose
+      - acorn-walk
+      - astring
+      - dayjs
+      - tmp
+    dev: false
+
   /dayjs@1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
     dev: false
@@ -94,6 +112,26 @@ packages:
       tmp: 0.2.1
     dev: false
 
+  /guy@12.10.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(dayjs@1.11.7)(tmp@0.2.1):
+    resolution: {integrity: sha512-k01buChYgYYrQs5TvMwE73tRHK/Pi/UT0jJQwTxxVEqCVRfdDtgB4rRPf9yIX2R7YQgNuFAjFEGjZW8HkBBOng==}
+    peerDependencies:
+      acorn: ^8.7.1
+      acorn-loose: ^8.3.0
+      acorn-walk: ^8.2.0
+      astring: ^1.8.3
+      dayjs: ^1.11.7
+      tmp: ^0.2.1
+    dependencies:
+      acorn: 8.8.2
+      acorn-loose: 8.3.0
+      acorn-walk: 8.2.0
+      astring: 1.8.4
+      dayjs: 1.11.7
+      intertype-legacy: 7.7.1
+      letsfreezethat: 3.1.0
+      tmp: 0.2.1
+    dev: false
+
   /guy@13.5.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(dayjs@1.11.7)(tmp@0.2.1):
     resolution: {integrity: sha512-GHHY/Ay1RvjQyFfv6giKc/MFGP8RiLYmBYFVHsjuRJ2EQj+RAZfWs1U7wAQF/Vnrdq83f+gEHbrDefnL9Eh+sg==}
     peerDependencies:
@@ -129,6 +167,21 @@ packages:
     resolution: {integrity: sha512-Bj3k9bCu8vA6JLIvnCrJXOdkecgY5wtCmORclJ87uq22N53swREHT5bezSeK5TwcxgSJEDg2wEfcn4kNr9Qv8A==}
     dependencies:
       multimix: 5.0.0
+    dev: false
+
+  /intertype@0.111.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(tmp@0.2.1):
+    resolution: {integrity: sha512-GLIrc9yk0vziLjp7riKr2Czmj5FZt+zxFX9+FLrzPfM04QsIs6PopzxuZy5iVkg2szgEgUZIwICRO/fhk2FPvw==}
+    dependencies:
+      guy: 11.12.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(tmp@0.2.1)
+      intertype-legacy: 7.7.1
+      rfdc: 1.3.0
+      to-width: 1.2.0
+    transitivePeerDependencies:
+      - acorn
+      - acorn-loose
+      - acorn-walk
+      - astring
+      - tmp
     dev: false
 
   /intertype@0.114.0(acorn-loose@8.3.0)(acorn-walk@8.2.0)(acorn@8.8.2)(astring@1.8.4)(tmp@0.2.1):
