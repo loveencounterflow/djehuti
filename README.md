@@ -7,7 +7,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [⚚ Djehuti <table><tr><td>𓆓𓎛𓅱</td><td>𓏏</td><td>𓏭</td><td>𓊹</td></tr></table>](#%E2%9A%9A-djehuti-tabletrtd%F0%93%86%93%F0%93%8E%9B%F0%93%85%B1tdtd%F0%93%8F%8Ftdtd%F0%93%8F%ADtdtd%F0%93%8A%B9tdtrtable)
+- [⚚ Djehuti 𓆓𓎛𓅱𓏏𓏭𓊹](#%E2%9A%9A-djehuti-%F0%93%86%93%F0%93%8E%9B%F0%93%85%B1%F0%93%8F%8F%F0%93%8F%AD%F0%93%8A%B9)
   - [Preliminary Docs](#preliminary-docs)
     - [XE Sending API](#xe-sending-api)
     - [XE Receiving API](#xe-receiving-api)
@@ -17,7 +17,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-# ⚚ Djehuti <table><tr><td>𓆓𓎛𓅱</td><td>𓏏</td><td>𓏭</td><td>𓊹</td></tr></table>
+# ⚚ Djehuti 𓆓𓎛𓅱𓏏𓏭𓊹
 
 ## Preliminary Docs
 
