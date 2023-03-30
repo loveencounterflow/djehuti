@@ -1,0 +1,12 @@
+{
+  "name": "xemitter",
+  "version": "1.0.0",
+  "description": "asynchronous events for NodeJS, based on sindresorhus/emittery",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
