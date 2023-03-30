@@ -8,6 +8,7 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [⚚ Djehuti 𓆓𓎛𓅱𓏏𓏭𓊹](#%E2%9A%9A-djehuti-%F0%93%86%93%F0%93%8E%9B%F0%93%85%B1%F0%93%8F%8F%F0%93%8F%AD%F0%93%8A%B9)
+  - [Name](#name)
   - [Preliminary Docs](#preliminary-docs)
     - [XE Sending API](#xe-sending-api)
     - [XE Receiving API](#xe-receiving-api)
@@ -18,6 +19,13 @@
 
 
 # ⚚ Djehuti 𓆓𓎛𓅱𓏏𓏭𓊹
+
+## Name
+
+* [WIkipedia article for *Thoth*](https://en.wikipedia.org/wiki/Thoth)
+* ancient Egyptian equivalent of [Hermes](https://en.wikipedia.org/wiki/Hermes), messenger of the gods
+  (among other things)
+
 
 ## Preliminary Docs
 
