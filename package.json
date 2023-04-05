@@ -1,6 +1,6 @@
 {
   "name": "intertalk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "asynchronous events for NodeJS, based on sindresorhus/emittery",
   "main": "lib/main.js",
   "repository": {
