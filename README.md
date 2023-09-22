@@ -13,6 +13,7 @@
     - [XE Receiving API](#xe-receiving-api)
     - [Sample](#sample)
     - [Managing Scope](#managing-scope)
+  - [Name](#name)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -90,5 +91,7 @@ you will want to publish that scope to all participating modules; one way to do 
 module with a single line in it, `module.exports = ( require 'pipedreams' ).XE.new_scope()`.
 
 
+## Name
 
-
+thx to [namique.xyz](https://www.namique.xyz) with prompt `A JavaScript package to do asynchronous
+messaging; the name should start with 'inter-'.`
