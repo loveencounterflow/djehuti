@@ -14,7 +14,7 @@ GUY                       = require 'guy'
   praise
   urge
   warn
-  whisper }               = GUY.trm.get_loggers 'DATOM/DJEHUTI'
+  whisper }               = GUY.trm.get_loggers 'intertalk'
 { rpr
   inspect
   echo
@@ -28,7 +28,7 @@ Emittery                  = require '../deps/emittery.js'
 
 
 #===========================================================================================================
-class Djehuti
+class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   constructor: ->
@@ -103,5 +103,5 @@ class Djehuti
     return R
 
 
-
-module.exports = { Djehuti, DJEHUTI: new Djehuti(), }
+#===========================================================================================================99
+module.exports = { Intertalk, INTERTALK: new Intertalk(), }

@@ -4,21 +4,6 @@
 
 
 ############################################################################################################
-GUY                       = require 'guy'
-# { alert
-#   debug
-#   help
-#   info
-#   plain
-#   praise
-#   urge
-#   warn
-#   whisper }               = GUY.trm.get_loggers 'DATOM/TYPES'
-{ debug }                 = GUY.trm.get_loggers 'DJEHUTI/TYPES'
-{ rpr
-  inspect
-  echo
-  log     }               = GUY.trm
 { Intertype }             = require 'intertype'
 base_types                = null
 xemitter_types            = null
