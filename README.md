@@ -26,11 +26,12 @@
 
 ### XE Sending API
 
-* **`XE.emit = ( key, d ) ->`** emit (a.k.a. 'publish', 'send to whom it may concern') an event. To
-  be called either as `XE.emit '^mykey', 'myvalue'` or as `XE.emit PD.new_event '^mykey', 'myvalue'` (in
-  which latter case the datom's key will become the channel key). When called with await as in
-  `return_values = await XE.emit '^foo', ...`, `return_values` will be a list with all values returned by
-  all listeners that got called for this event.
+* **`XE.emit = ( key, d ) ->`** emit (a.k.a. 'publish', 'send to whom it may concern') an event. To be
+  called either as `XE.emit '^mykey', 'myvalue'` or as `XE.emit PD.new_event '^mykey', 'myvalue'` (in which
+  latter case the datom's key will become the channel key).
+
+  When called with `await` as in `return_values = await XE.emit '^foo', ...`, then `return_values` will be a
+  list with all values returned by all listeners that got called for this event.
 
 * **`XE.delegate = ( key, d ) ->`** like `XE.emit()` but will pick out and unwrap the event value
   from the event contractor (see below). If no event contractor was listening, an error will be raised.
@@ -88,7 +89,7 @@ For a demo with more coverage, have a look at
 Typically, you'll start using XEmitter with `XE = PD.XE.new_scope()`; this creates a new 'scope' for events.
 Only methods that emit and listen to the same scope can exchange messages. When used within an application,
 you will want to publish that scope to all participating modules; one way to do so is to write a dedicated
-module with a single line in it, `module.exports = ( require 'pipedreams' ).XE.new_scope()`.
+module with a single line in it, `module.exports = ( require 'intertalk' ).XE.new_scope()`.
 
 
 ## Name
