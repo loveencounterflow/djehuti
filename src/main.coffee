@@ -92,10 +92,10 @@ class Datom
 
 
 #===========================================================================================================
-class Event extends Datom
+class AE_Event extends Datom
 
 #===========================================================================================================
-class Event_results extends Datom
+class AE_Event_results extends Datom
 
   #---------------------------------------------------------------------------------------------------------
   constructor: ( event, results ) ->
@@ -149,12 +149,12 @@ class Async_events
 
   #---------------------------------------------------------------------------------------------------------
   emit: ( P... ) ->
-    event     = new Event P...
+    event     = new AE_Event P...
     { $key }  = event
     listeners = @_listeners_from_event event
     await resolved_promise ### as per https://github.com/sindresorhus/emittery/blob/main/index.js#L363 ###
     results = await Promise.all ( ( -> await listener event )() for listener from listeners )
-    return new Event_results event, results
+    return new AE_Event_results event, results
 
 
 #===========================================================================================================
