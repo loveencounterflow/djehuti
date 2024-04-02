@@ -5,6 +5,8 @@
 
 
 #===========================================================================================================
+rpr                       = ( require 'webguy' ).trm.rpr
+#-----------------------------------------------------------------------------------------------------------
 resolved_promise          = Promise.resolve()
 # s                         = ( name ) -> Symbol.for  name
 # ps                        = ( name ) -> Symbol      name
@@ -128,8 +130,8 @@ class Async_events
       listener0     = receiver[ listener_name ]
       unless isa.event_listener listener0
         ### TAINT `typeof` will give some strange results ###
-        ### TAINT use `rpr()` to quote property name ###
-        throw new Error "expected event_listener for object property #{listener_name}, got a #{typeof listener0}"
+        throw new Error \
+          "expected event_listener for object property #{rpr listener_name}, got a #{typeof listener0}"
       listener      = ( P... ) -> await listener0.call receiver, P...
     #.......................................................................................................
     ( @_listeners_from_key $key ).push listener
