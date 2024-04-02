@@ -161,3 +161,4 @@ class Async_events
 AE = new Async_events()
 
 
+module.exports = { AE, Async_events, AE_Event, AE_Event_results, Datom, isa, validate, isa_optional, validate_optional }
