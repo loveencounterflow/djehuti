@@ -1,6 +1,6 @@
 {
   "name": "intertalk",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "asynchronous events for NodeJS and the web",
   "main": "lib/main.js",
   "repository": {
@@ -13,6 +13,5 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
