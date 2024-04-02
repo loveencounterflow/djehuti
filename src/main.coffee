@@ -125,7 +125,11 @@ class Async_events
       listener      = receiver
     else
       listener_name = SYMBOLIC._listener_name_from_key $key
-      listener0     = validate.event_listener receiver[ listener_name ]
+      listener0     = receiver[ listener_name ]
+      unless isa.event_listener listener0
+        ### TAINT `typeof` will give some strange results ###
+        ### TAINT use `rpr()` to quote property name ###
+        throw new Error "expected event_listener for object property #{listener_name}, got a #{typeof listener0}"
       listener      = ( P... ) -> await listener0.call receiver, P...
     #.......................................................................................................
     ( @_listeners_from_key $key ).push listener
