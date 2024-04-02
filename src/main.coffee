@@ -10,7 +10,11 @@ rpr                       = ( require 'webguy' ).trm.rpr
 resolved_promise          = Promise.resolve()
 # s                         = ( name ) -> Symbol.for  name
 # ps                        = ( name ) -> Symbol      name
-
+#-----------------------------------------------------------------------------------------------------------
+get_WeakMap = ->
+  return Map unless globalThis.WeakMap?
+  try ( new WeakMap() ).set Symbol 'whatever', 123 catch error then return Map
+  return globalThis.WeakMap
 
 #===========================================================================================================
 isa =
@@ -112,7 +116,7 @@ class Async_events
   #---------------------------------------------------------------------------------------------------------
   constructor: ->
     @key_symbols  = new Map
-    @listeners    = new WeakMap()
+    @listeners    = new ( get_WeakMap() )()
     return undefined
 
   #---------------------------------------------------------------------------------------------------------
