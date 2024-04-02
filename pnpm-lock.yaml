@@ -1,0 +1,33 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  webguy:
+    specifier: ^5.2.1
+    version: 5.2.1
+
+packages:
+
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+    dev: false
+
+  /intertype@7.6.3:
+    resolution: {integrity: sha512-77FmgaqGydWBc5OIde+geMj4+dGZ1i5UIFXM4C9QHiEIBjh+Gojycsb7XtRYYLNhNJepa+jotHXfAGPngHatzw==}
+    dependencies:
+      multimix: 5.0.0
+    dev: false
+
+  /multimix@5.0.0:
+    resolution: {integrity: sha512-N9cdGSDDD7kxOV7R6e4iZqsHTZ4F4iiSDWqMcVqx4gEH6HBtRXav39Gj3fgT1YqvBcwPCQuf0Oa5R2cDaLWK8A==}
+    dev: false
+
+  /webguy@5.2.1:
+    resolution: {integrity: sha512-wI3/JPpQjcnsTjZbh+dtAt2ZbSvC2pIOhheiwg2YrUY65vZSRAIP/flTn8anMmvYWTMJjxGIqxC/NvDUob2cUg==}
+    dependencies:
+      dayjs: 1.11.10
+      intertype: 7.6.3
+    dev: false

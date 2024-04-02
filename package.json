@@ -13,5 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "webguy": "^5.2.1"
+  }
 }
