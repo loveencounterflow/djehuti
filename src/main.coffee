@@ -98,20 +98,20 @@ class Datom
 
 
 #===========================================================================================================
-class AE_Event extends Datom
+class Note extends Datom
 
 #===========================================================================================================
-class AE_Event_results extends Datom
+class Results extends Datom
 
   #---------------------------------------------------------------------------------------------------------
-  constructor: ( ae_event, results ) ->
+  constructor: ( note, results ) ->
     throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.binary arguments
-    super 'ae_event-results', { ae_event, results, }
+    super '$results', { note, results, }
     return undefined
 
 
 #===========================================================================================================
-class Async_events
+class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   constructor: ->
@@ -145,7 +145,7 @@ class Async_events
   #---------------------------------------------------------------------------------------------------------
   _listeners_from_key: ( $key ) ->
     ### TAINT is this necessary and does it what it intends to do? ###
-    ### use Symbol, WeakMap to allow for garbage collection when `Async_events` instance gets out of scope: ###
+    ### use Symbol, WeakMap to allow for garbage collection when `Intertalk` instance gets out of scope: ###
     unless ( key_symbol = @key_symbols.get $key )?
       @key_symbols.set $key, ( key_symbol = SYMBOLIC._unique_key_symbol_from_key $key )
     unless ( R = @listeners.get key_symbol )?
@@ -159,16 +159,16 @@ class Async_events
 
   #---------------------------------------------------------------------------------------------------------
   emit: ( P... ) ->
-    ae_event  = new AE_Event P...
+    ae_event  = new Note P...
     { $key }  = ae_event
     listeners = @_listeners_from_event ae_event
     await resolved_promise ### as per https://github.com/sindresorhus/emittery/blob/main/index.js#L363 ###
     results = await Promise.all ( ( -> await listener ae_event )() for listener from listeners )
-    return new AE_Event_results ae_event, results
+    return new Results ae_event, results
 
 
 #===========================================================================================================
-AE = new Async_events()
+IT = new Intertalk()
 
 
-module.exports = { AE, Async_events, AE_Event, AE_Event_results, Datom, isa, validate, isa_optional, validate_optional }
+module.exports = { IT, Intertalk, Note, Results, Datom, isa, validate, isa_optional, validate_optional }

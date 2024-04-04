@@ -21,13 +21,14 @@
 
 * **[+]** allow to use `Map` (or other suitable replacement) instead of `WeakMap` where `Symbol`s are not
   allowed as keys (true for Firefox at least up to v124.0.1)
+* **[+]** fix some names:
+  * class *`Async_events`* (-> `Intertalk`?)
+  * class *`AE_Event`* (-> `Note`)
+  * instance *`ae_event`* (-> `note`?)
+  * class *`AE_Event_results`* (-> `Results`)
+  * datom key *`ae_event-results`* (`$results`)
 
 # To Do
 
 * **[–]** event namespacing
-* **[–]** fix some names:
-  * class *`Async_events`* (-> `Intertalk`?)
-  * class *`AE_Event`* (-> `Note`)
-  * instance *`ae_event`* (-> `note`?)
-  * class *`AE_Event_results`* (-> `Note`)
-  * datom key *`ae_event-results`* (`$results`)
+* **[–]** export singular instance of `Intertalk`, provide other names as properties (?)
