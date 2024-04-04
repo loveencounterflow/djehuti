@@ -104,9 +104,9 @@ class AE_Event extends Datom
 class AE_Event_results extends Datom
 
   #---------------------------------------------------------------------------------------------------------
-  constructor: ( event, results ) ->
+  constructor: ( ae_event, results ) ->
     throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.binary arguments
-    super 'event-results', { event, results, }
+    super 'ae_event-results', { ae_event, results, }
     return undefined
 
 
@@ -121,7 +121,7 @@ class Async_events
 
   #---------------------------------------------------------------------------------------------------------
   on: ( $key, receiver ) ->
-    ### TAINT prevent from registering a listener more than once per event $key ###
+    ### TAINT prevent from registering a listener more than once per ae_event $key ###
     throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.binary arguments
     validate.event_key $key
     validate.something receiver
@@ -153,18 +153,18 @@ class Async_events
     return R
 
   #---------------------------------------------------------------------------------------------------------
-  _listeners_from_event: ( event ) ->
-    listeners   = @_listeners_from_key event.$key
+  _listeners_from_event: ( ae_event ) ->
+    listeners   = @_listeners_from_key ae_event.$key
     return listeners ? []
 
   #---------------------------------------------------------------------------------------------------------
   emit: ( P... ) ->
-    event     = new AE_Event P...
-    { $key }  = event
-    listeners = @_listeners_from_event event
+    ae_event  = new AE_Event P...
+    { $key }  = ae_event
+    listeners = @_listeners_from_event ae_event
     await resolved_promise ### as per https://github.com/sindresorhus/emittery/blob/main/index.js#L363 ###
-    results = await Promise.all ( ( -> await listener event )() for listener from listeners )
-    return new AE_Event_results event, results
+    results = await Promise.all ( ( -> await listener ae_event )() for listener from listeners )
+    return new AE_Event_results ae_event, results
 
 
 #===========================================================================================================
