@@ -33,6 +33,7 @@ isa =
   unary:                  ( x ) -> x? and ( x.length is 1 )
   binary:                 ( x ) -> x? and ( x.length is 2 )
   unary_or_binary:        ( x ) -> x? and ( ( x.length is 1 ) or ( x.length is 2 ) )
+  binary_or_trinary:      ( x ) -> x? and ( ( x.length is 2 ) or ( x.length is 3 ) )
   $freeze:                ( x ) -> isa.boolean x
 
 
@@ -165,6 +166,16 @@ class Intertalk
     await resolved_promise ### as per https://github.com/sindresorhus/emittery/blob/main/index.js#L363 ###
     results = await Promise.all ( ( -> await listener ae_event )() for listener from listeners )
     return new Results ae_event, results
+
+  #---------------------------------------------------------------------------------------------------------
+  emit_on_event: ( element, event_name, note_name ) ->
+    switch arity = arguments.length
+      # when 1
+      when 2 then [ element, event_name, note_name, ] = [ document, element , event_name, ]
+      when 3 then null
+      else validate.binary_or_trinary arguments
+    handler = ( event ) => @emit note_name, event
+    return element.addEventListener event_name, handler, false
 
 
 #===========================================================================================================

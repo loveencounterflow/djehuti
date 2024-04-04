@@ -16,8 +16,13 @@
 
 # InterTalk
 
+## API
 
-# Is Done
+* `emit_on_event: ( element, event_name, note_name ) ->` (only in browser): given a DOM `element`, a DOM
+  `event_name` and a `note` name, when a matching event is triggered on the element, emit a note with `$key:
+  note_name` and `$value: event`
+
+## Is Done
 
 * **[+]** allow to use `Map` (or other suitable replacement) instead of `WeakMap` where `Symbol`s are not
   allowed as keys (true for Firefox at least up to v124.0.1)
@@ -27,8 +32,8 @@
   * instance *`ae_event`* (-> `note`?)
   * class *`AE_Event_results`* (-> `Results`)
   * datom key *`ae_event-results`* (`$results`)
+* **[+]** export singular instance of `Intertalk`, provide other names as properties (?)
 
-# To Do
+## To Do
 
 * **[–]** event namespacing
-* **[–]** export singular instance of `Intertalk`, provide other names as properties (?)
