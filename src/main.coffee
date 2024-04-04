@@ -168,7 +168,5 @@ class Intertalk
 
 
 #===========================================================================================================
-IT = new Intertalk()
-
-
-module.exports = { IT, Intertalk, Note, Results, Datom, isa, validate, isa_optional, validate_optional }
+_extras         = { Datom, isa, validate, isa_optional, validate_optional, }
+module.exports  = Object.assign new Intertalk(), { Intertalk, Note, Results, _extras, }
