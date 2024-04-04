@@ -1,6 +1,6 @@
 {
   "name": "intertalk",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "asynchronous events for NodeJS and the web",
   "main": "lib/main.js",
   "repository": {
