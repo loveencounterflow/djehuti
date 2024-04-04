@@ -23,3 +23,11 @@
   allowed as keys (true for Firefox at least up to v124.0.1)
 
 # To Do
+
+* **[–]** event namespacing
+* **[–]** fix some names:
+  * class *`Async_events`* (-> `Intertalk`?)
+  * class *`AE_Event`* (-> `Note`)
+  * instance *`ae_event`* (-> `note`?)
+  * class *`AE_Event_results`* (-> `Note`)
+  * datom key *`ae_event-results`* (`$results`)
