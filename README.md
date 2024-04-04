@@ -8,8 +8,9 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [InterTalk](#intertalk)
-- [Is Done](#is-done)
-- [To Do](#to-do)
+  - [API](#api)
+  - [Is Done](#is-done)
+  - [To Do](#to-do)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -21,6 +22,10 @@
 * `emit_on_event: ( element, event_name, note_name ) ->` (only in browser): given a DOM `element`, a DOM
   `event_name` and a `note` name, when a matching event is triggered on the element, emit a note with `$key:
   note_name` and `$value: event`
+  * when `emit_on_event` is called with the arguments `( event_name, note_name )` then the event listener
+    will be attached to `document`: `IT.emit_on_event div_1, 'click', 'bar'` will be triggered when clicking
+    on the `div_1` element only, but `IT.emit_on_event 'click', 'bar'` will be triggered by any click
+    anywhere within the browser document window.
 
 ## Is Done
 
