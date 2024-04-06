@@ -42,3 +42,11 @@
 ## To Do
 
 * **[–]** event namespacing
+* **[–]** in `emit_on_event()`, allow to transform / add attributes to outgoing `note`
+* **[–]** implement `on_any()` or similar to catch all emitted `note`s
+* **[–]** implement `on_unhandled()` or similar to catch all `note`s that were emitted but not listened to
+* **[–]** implement `once()` for listeners that should only receive a single `note` (this requires
+  implementing `off()`)
+* **[–]** implement `off()` to unsubscribe a listener
+* **[–]** remove ability to discover suitably named note listeners on objects as it only leads to
+  complications
