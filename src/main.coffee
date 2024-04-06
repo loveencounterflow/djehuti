@@ -27,8 +27,8 @@ isa =
   symbol:                 ( x ) -> ( typeof x ) is 'symbol'
   object:                 ( x ) -> x? and ( typeof x is 'object' ) and ( ( Object::toString.call x ) is '[object Object]' )
   text:                   ( x ) -> ( typeof x ) is 'string'
-  event_listener:         ( x ) -> ( @function x ) or ( @asyncfunction x )
-  event_key:              ( x ) -> ( @text x ) or ( @symbol x )
+  IT_listener:            ( x ) -> ( @function x ) or ( @asyncfunction x )
+  IT_note_$key:           ( x ) -> ( @text x ) or ( @symbol x )
   nullary:                ( x ) -> x? and ( x.length is 0 )
   unary:                  ( x ) -> x? and ( x.length is 1 )
   binary:                 ( x ) -> x? and ( x.length is 2 )
@@ -94,7 +94,7 @@ class Datom
     delete @$freeze
     Object.freeze @ if $freeze
     #.......................................................................................................
-    validate.event_key @$key
+    validate.IT_note_$key @$key
     return undefined
 
 
