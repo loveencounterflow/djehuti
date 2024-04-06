@@ -121,24 +121,11 @@ class Intertalk
     return undefined
 
   #---------------------------------------------------------------------------------------------------------
-  on: ( $key, receiver ) ->
+  on: ( $key, listener ) ->
     ### TAINT prevent from registering a listener more than once per ae_event $key ###
     throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.binary arguments
-    validate.event_key $key
-    validate.something receiver
-    #.......................................................................................................
-    ### if receiver is a callable, use it; else, try to retrieve a suitably named method and use that: ###
-    if isa.event_listener receiver
-      listener      = receiver
-    else
-      listener_name = SYMBOLIC._listener_name_from_key $key
-      listener0     = receiver[ listener_name ]
-      unless isa.event_listener listener0
-        ### TAINT `typeof` will give some strange results ###
-        throw new Error \
-          "expected event_listener for object property #{rpr listener_name}, got a #{typeof listener0}"
-      listener      = ( P... ) -> await listener0.call receiver, P...
-    #.......................................................................................................
+    validate.IT_note_$key $key
+    validate.IT_listener  listener
     ( @_listeners_from_key $key ).push listener
     unsubscribe = ->
     return unsubscribe
