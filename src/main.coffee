@@ -116,8 +116,9 @@ class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   constructor: ->
-    @key_symbols  = new Map
-    @listeners    = new ( get_WeakMap() )()
+    @symbols        = { any: ( Symbol 'any' ), }
+    @key_symbols    = new Map()
+    @listeners      = new ( get_WeakMap() )()
     return undefined
 
   #---------------------------------------------------------------------------------------------------------
@@ -127,6 +128,13 @@ class Intertalk
     validate.IT_note_$key $key
     validate.IT_listener  listener
     ( @_listeners_from_key $key ).push listener
+    unsubscribe = ->
+    return unsubscribe
+
+  #---------------------------------------------------------------------------------------------------------
+  on_any: ( listener ) ->
+    validate.IT_listener listener
+    ( @_listeners_from_key @symbols.any ).push listener
     unsubscribe = ->
     return unsubscribe
 
@@ -141,17 +149,15 @@ class Intertalk
     return R
 
   #---------------------------------------------------------------------------------------------------------
-  _listeners_from_event: ( ae_event ) ->
-    listeners   = @_listeners_from_key ae_event.$key
-    return listeners ? []
-
-  #---------------------------------------------------------------------------------------------------------
   emit: ( P... ) ->
-    ae_event  = new Note P...
-    { $key }  = ae_event
-    listeners = @_listeners_from_event ae_event
+    ae_event      = new Note P...
+    { $key }      = ae_event
+    key_listeners = @_listeners_from_key  ae_event.$key
+    any_listeners = @_listeners_from_key  @symbols.any
     await resolved_promise ### as per https://github.com/sindresorhus/emittery/blob/main/index.js#L363 ###
-    results = await Promise.all ( ( -> await listener ae_event )() for listener from listeners )
+    results = []
+    results.push ( await Promise.all ( ( -> await listener ae_event )() for listener from any_listeners ) )...
+    results.push ( await Promise.all ( ( -> await listener ae_event )() for listener from key_listeners ) )...
     return new Results ae_event, results
 
   #---------------------------------------------------------------------------------------------------------
