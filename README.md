@@ -38,6 +38,8 @@
   * class *`AE_Event_results`* (-> `Results`)
   * datom key *`ae_event-results`* (`$results`)
 * **[+]** export singular instance of `Intertalk`, provide other names as properties (?)
+* **[+]** remove ability to discover suitably named note listeners on objects as it only leads to
+  complications
 
 ## To Do
 
@@ -48,5 +50,3 @@
 * **[–]** implement `once()` for listeners that should only receive a single `note` (this requires
   implementing `off()`)
 * **[–]** implement `off()` to unsubscribe a listener
-* **[–]** remove ability to discover suitably named note listeners on objects as it only leads to
-  complications
