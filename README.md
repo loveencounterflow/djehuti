@@ -50,3 +50,7 @@
 * **[–]** implement `once()` for listeners that should only receive a single `note` (this requires
   implementing `off()`)
 * **[–]** implement `off()` to unsubscribe a listener
+* **[–]** reconstruct listener registration:
+  * in a `Map` (needed for symbol `$key`s), store `WeakSet`s as values,
+  * likewise, make `Intertalk#any_listeners` a `WeakMap`
+  * may later want to cache association between `$key`s and `listener`s to avoid to re-construct sets
