@@ -40,17 +40,17 @@
 * **[+]** export singular instance of `Intertalk`, provide other names as properties (?)
 * **[+]** remove ability to discover suitably named note listeners on objects as it only leads to
   complications
+* **[+]** <del>reconstruct listener registration:
+  * in a `Map` (needed for symbol `$key`s), store `WeakSet`s as values,
+  * likewise, make `Intertalk#any_listeners` a `WeakMap`
+  * may later want to cache association between `$key`s and `listener`s to avoid to re-construct sets</del>
+* **[+]** implement `on_any()` or similar to catch all emitted `note`s
 
 ## To Do
 
 * **[–]** event namespacing
 * **[–]** in `emit_on_event()`, allow to transform / add attributes to outgoing `note`
-* **[–]** implement `on_any()` or similar to catch all emitted `note`s
 * **[–]** implement `on_unhandled()` or similar to catch all `note`s that were emitted but not listened to
 * **[–]** implement `once()` for listeners that should only receive a single `note` (this requires
   implementing `off()`)
 * **[–]** implement `off()` to unsubscribe a listener
-* **[–]** reconstruct listener registration:
-  * in a `Map` (needed for symbol `$key`s), store `WeakSet`s as values,
-  * likewise, make `Intertalk#any_listeners` a `WeakMap`
-  * may later want to cache association between `$key`s and `listener`s to avoid to re-construct sets
