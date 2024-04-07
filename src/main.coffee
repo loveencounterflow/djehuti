@@ -132,6 +132,20 @@ class Intertalk
     return null
 
   #---------------------------------------------------------------------------------------------------------
+  off: ( listener ) ->
+    ### TAINT add optional $key to unsubscribe only from specific event ###
+    throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.unary arguments
+    validate.IT_listener listener
+    R = 0
+    for [ registered_key, key_symbol, ] from @key_symbols
+      registered_listeners = ( @listeners.get key_symbol ) ? []
+      for idx in [ registered_listeners.length - 1 .. 0 ] by -1
+        continue unless registered_listeners[ idx ] is listener
+        R++
+        registered_listeners.splice idx, 1
+    return R
+
+  #---------------------------------------------------------------------------------------------------------
   on_any: ( listener ) ->
     validate.IT_listener listener
     ( @_listeners_from_key @symbols.any ).push listener
