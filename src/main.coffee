@@ -21,6 +21,7 @@ isa =
   anything:               ( x ) -> true
   nothing:                ( x ) -> not x?
   something:              ( x ) -> x?
+  null:                   ( x ) -> x is null
   boolean:                ( x ) -> ( x is true ) or ( x is false )
   function:               ( x ) -> ( Object::toString.call x ) is '[object Function]'
   asyncfunction:          ( x ) -> ( Object::toString.call x ) is '[object AsyncFunction]'
@@ -128,15 +129,13 @@ class Intertalk
     validate.IT_note_$key $key
     validate.IT_listener  listener
     ( @_listeners_from_key $key ).push listener
-    unsubscribe = ->
-    return unsubscribe
+    return null
 
   #---------------------------------------------------------------------------------------------------------
   on_any: ( listener ) ->
     validate.IT_listener listener
     ( @_listeners_from_key @symbols.any ).push listener
-    unsubscribe = ->
-    return unsubscribe
+    return null
 
   #---------------------------------------------------------------------------------------------------------
   _listeners_from_key: ( $key ) ->
