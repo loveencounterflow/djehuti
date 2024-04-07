@@ -117,7 +117,7 @@ class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   constructor: ->
-    @symbols        = { any: ( Symbol 'any' ), }
+    @symbols        = { any: ( Symbol 'any' ), unhandled: ( Symbol 'unhandled' ), }
     @key_symbols    = new Map()
     @listeners      = new ( get_WeakMap() )()
     return undefined
@@ -152,6 +152,12 @@ class Intertalk
     return null
 
   #---------------------------------------------------------------------------------------------------------
+  on_unhandled: ( listener ) ->
+    validate.IT_listener listener
+    ( @_listeners_from_key @symbols.unhandled ).push listener
+    return null
+
+  #---------------------------------------------------------------------------------------------------------
   _listeners_from_key: ( $key ) ->
     ### TAINT is this necessary and does it what it intends to do? ###
     ### use Symbol, WeakMap to allow for garbage collection when `Intertalk` instance gets out of scope: ###
@@ -163,13 +169,15 @@ class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   emit: ( P... ) ->
-    ae_event      = new Note P...
-    { $key }      = ae_event
-    key_listeners = @_listeners_from_key  ae_event.$key
-    any_listeners = @_listeners_from_key  @symbols.any
+    ae_event            = new Note P...
+    { $key }            = ae_event
+    key_listeners       = @_listeners_from_key  ae_event.$key
+    any_listeners       = @_listeners_from_key  @symbols.any
+    fallback_listeners  = if key_listeners.length is 0 then @_listeners_from_key @symbols.unhandled else []
+    results             = []
     await resolved_promise ### as per https://github.com/sindresorhus/emittery/blob/main/index.js#L363 ###
-    results = []
     results.push ( await Promise.all ( ( -> listener ae_event )() for listener from any_listeners      ) )...
+    results.push ( await Promise.all ( ( -> listener ae_event )() for listener from fallback_listeners ) )...
     results.push ( await Promise.all ( ( -> listener ae_event )() for listener from key_listeners      ) )...
     return new Results ae_event, results
 
