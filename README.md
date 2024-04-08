@@ -54,6 +54,10 @@
 
 * **[–]** event namespacing
 * **[–]** in `emit_on_event()`, allow to transform / add attributes to outgoing `note`
-* **[–]** implement `once()` for listeners that should only receive a single `note` (this requires
-  implementing `off()`)
+* **[–]** <del>implement `once()` for listeners that should only receive a single `note` (this requires
+  implementing `off()`)</del> <del>implement returning a 'command' instance that may contain the listener's
+  results, if any, but also controls how to deal with the current note and whether or not to unsubscribe the
+  listener. **Alternatively**, either (1)</del> pass in a second argument (dubbed `control` or `ctrl`) that
+  contains methods to unsubscribe, cancel &c<del>, or (2) describe how to achieve this by using the `intertalk`
+  instance's methods</del>
 * **[–]** implement note cancellation / note rewrite
