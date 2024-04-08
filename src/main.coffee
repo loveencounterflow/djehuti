@@ -141,7 +141,8 @@ class Intertalk
     for [ registered_key, key_symbol, ] from @key_symbols
       registered_listeners_and_ctls = ( @listeners.get key_symbol ) ? []
       for idx in [ registered_listeners_and_ctls.length - 1 .. 0 ] by -1
-        continue unless registered_listeners_and_ctls[ idx ][ 0 ] is listener
+        [ registered_listener, ctl, ] = registered_listeners_and_ctls[ idx ]
+        continue unless registered_listener is listener
         R++
         registered_listeners_and_ctls.splice idx, 1
     return R
