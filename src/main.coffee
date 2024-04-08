@@ -128,13 +128,14 @@ class Intertalk
     throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.binary arguments
     validate.IT_note_$key $key
     validate.IT_listener  listener
-    ( @_listeners_from_key $key ).push listener
+    ctl = @_get_ctl $key, listener
+    ( @_listeners_from_key $key ).push [ listener, ctl, ]
     return null
 
   #---------------------------------------------------------------------------------------------------------
   off: ( listener ) ->
     ### TAINT add optional $key to unsubscribe only from specific note $key ###
-    throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.unary arguments
+    throw new Error "expected 1 arguments, got #{arguments.length}" unless isa.unary arguments
     validate.IT_listener listener
     R = 0
     for [ registered_key, key_symbol, ] from @key_symbols
@@ -148,14 +149,21 @@ class Intertalk
   #---------------------------------------------------------------------------------------------------------
   on_any: ( listener ) ->
     validate.IT_listener listener
-    ( @_listeners_from_key @symbols.any ).push listener
+    ctl = @_get_ctl @symbols.any, listener
+    ( @_listeners_from_key @symbols.any ).push [ listener, ctl, ]
     return null
 
   #---------------------------------------------------------------------------------------------------------
   on_unhandled: ( listener ) ->
     validate.IT_listener listener
-    ( @_listeners_from_key @symbols.unhandled ).push listener
+    ctl = @_get_ctl @symbols.unhandled listener
+    ( @_listeners_from_key @symbols.unhandled ).push [ listener, ctl, ]
     return null
+
+  #---------------------------------------------------------------------------------------------------------
+  _get_ctl : ( $key, listener ) -> R =
+    off:      => @off     $key, listener
+    off_all:  => @off_all       listener
 
   #---------------------------------------------------------------------------------------------------------
   _listeners_from_key: ( $key ) ->
@@ -176,9 +184,9 @@ class Intertalk
     fallback_listeners  = if key_listeners.length is 0 then @_listeners_from_key @symbols.unhandled else []
     results             = []
     await resolved_promise ### as per https://github.com/sindresorhus/emittery/blob/main/index.js#L363 ###
-    results.push ( await Promise.all ( ( -> listener note )() for listener from any_listeners      ) )...
-    results.push ( await Promise.all ( ( -> listener note )() for listener from fallback_listeners ) )...
-    results.push ( await Promise.all ( ( -> listener note )() for listener from key_listeners      ) )...
+    results.push ( await Promise.all ( ( -> lstnr note, ctl )() for [ lstnr, ctl, ] from any_listeners      ) )...
+    results.push ( await Promise.all ( ( -> lstnr note, ctl )() for [ lstnr, ctl, ] from fallback_listeners ) )...
+    results.push ( await Promise.all ( ( -> lstnr note, ctl )() for [ lstnr, ctl, ] from key_listeners      ) )...
     return new Results note, results
 
   #---------------------------------------------------------------------------------------------------------
