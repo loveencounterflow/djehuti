@@ -139,11 +139,11 @@ class Intertalk
     validate.IT_listener listener
     R = 0
     for [ registered_key, key_symbol, ] from @key_symbols
-      registered_listeners = ( @listeners.get key_symbol ) ? []
-      for idx in [ registered_listeners.length - 1 .. 0 ] by -1
-        continue unless registered_listeners[ idx ] is listener
+      registered_listeners_and_ctls = ( @listeners.get key_symbol ) ? []
+      for idx in [ registered_listeners_and_ctls.length - 1 .. 0 ] by -1
+        continue unless registered_listeners_and_ctls[ idx ][ 0 ] is listener
         R++
-        registered_listeners.splice idx, 1
+        registered_listeners_and_ctls.splice idx, 1
     return R
 
   #---------------------------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ class Intertalk
   #---------------------------------------------------------------------------------------------------------
   on_unhandled: ( listener ) ->
     validate.IT_listener listener
-    ctl = @_get_ctl @symbols.unhandled listener
+    ctl = @_get_ctl @symbols.unhandled, listener
     ( @_listeners_from_key @symbols.unhandled ).push [ listener, ctl, ]
     return null
 
