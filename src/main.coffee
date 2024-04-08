@@ -124,7 +124,7 @@ class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   on: ( $key, listener ) ->
-    ### TAINT prevent from registering a listener more than once per ae_event $key ###
+    ### TAINT prevent from registering a listener more than once per note $key ###
     throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.binary arguments
     validate.IT_note_$key $key
     validate.IT_listener  listener
@@ -133,7 +133,7 @@ class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   off: ( listener ) ->
-    ### TAINT add optional $key to unsubscribe only from specific event ###
+    ### TAINT add optional $key to unsubscribe only from specific note $key ###
     throw new Error "expected 2 arguments, got #{arguments.length}" unless isa.unary arguments
     validate.IT_listener listener
     R = 0
@@ -169,17 +169,17 @@ class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   emit: ( P... ) ->
-    ae_event            = new Note P...
-    { $key }            = ae_event
-    key_listeners       = @_listeners_from_key  ae_event.$key
+    note                = new Note P...
+    { $key }            = note
+    key_listeners       = @_listeners_from_key  note.$key
     any_listeners       = @_listeners_from_key  @symbols.any
     fallback_listeners  = if key_listeners.length is 0 then @_listeners_from_key @symbols.unhandled else []
     results             = []
     await resolved_promise ### as per https://github.com/sindresorhus/emittery/blob/main/index.js#L363 ###
-    results.push ( await Promise.all ( ( -> listener ae_event )() for listener from any_listeners      ) )...
-    results.push ( await Promise.all ( ( -> listener ae_event )() for listener from fallback_listeners ) )...
-    results.push ( await Promise.all ( ( -> listener ae_event )() for listener from key_listeners      ) )...
-    return new Results ae_event, results
+    results.push ( await Promise.all ( ( -> listener note )() for listener from any_listeners      ) )...
+    results.push ( await Promise.all ( ( -> listener note )() for listener from fallback_listeners ) )...
+    results.push ( await Promise.all ( ( -> listener note )() for listener from key_listeners      ) )...
+    return new Results note, results
 
   #---------------------------------------------------------------------------------------------------------
   emit_on_event: ( element, event_name, note_name ) ->
