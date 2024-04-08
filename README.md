@@ -60,4 +60,7 @@
   listener. **Alternatively**, either (1)</del> pass in a second argument (dubbed `control` or `ctrl`) that
   contains methods to unsubscribe, cancel &c<del>, or (2) describe how to achieve this by using the `intertalk`
   instance's methods</del>
+  * `off: () ->`: unsubscribe this listener from this `$key`
+  * `off_all: () ->`: unsubscribe this listener from all keys, including `any` and fallback subscriptions
+
 * **[–]** implement note cancellation / note rewrite
