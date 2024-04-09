@@ -27,7 +27,8 @@
     on the `div_1` element only, but `IT.emit_on_event 'click', 'bar'` will be triggered by any click
     anywhere within the browser document window.
 
-* `off: ( listener ) ->`: unsubscribe `listener` from any events.
+* `off: ( listener ) ->`: unsubscribe `listener` from all notifications.
+* `off: ( $key, listener ) ->`: unsubscribe `listener` from notifications matching `$key`.
 
 ## Is Done
 
@@ -48,6 +49,7 @@
   * may later want to cache association between `$key`s and `listener`s to avoid to re-construct sets</del>
 * **[+]** implement `on_any()` or similar to catch all emitted `note`s
 * **[+]** implement `off()` to unsubscribe a listener
+* **[+]** implement signature `off $key, listener` to unsubscribe a listener only from matching notes
 * **[+]** implement `on_unhandled()` or similar to catch all `note`s that were emitted but not listened to
 
 ## To Do
