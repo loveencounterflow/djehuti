@@ -148,18 +148,8 @@ class Intertalk
     return R
 
   #---------------------------------------------------------------------------------------------------------
-  on_any: ( listener ) ->
-    validate.IT_listener listener
-    ctl = @_get_ctl @symbols.any, listener
-    ( @_listeners_from_key @symbols.any ).push [ listener, ctl, ]
-    return null
-
-  #---------------------------------------------------------------------------------------------------------
-  on_unhandled: ( listener ) ->
-    validate.IT_listener listener
-    ctl = @_get_ctl @symbols.unhandled, listener
-    ( @_listeners_from_key @symbols.unhandled ).push [ listener, ctl, ]
-    return null
+  on_any:       ( listener ) -> @on @symbols.any,       listener
+  on_unhandled: ( listener ) -> @on @symbols.unhandled, listener
 
   #---------------------------------------------------------------------------------------------------------
   _get_ctl : ( $key, listener ) -> R =
