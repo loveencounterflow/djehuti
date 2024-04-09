@@ -133,12 +133,16 @@ class Intertalk
     return null
 
   #---------------------------------------------------------------------------------------------------------
-  off: ( listener ) ->
-    ### TAINT add optional $key to unsubscribe only from specific note $key ###
-    throw new Error "expected 1 arguments, got #{arguments.length}" unless isa.unary arguments
+  off: ( $key, listener ) ->
+    switch arity = arguments.length
+      when 1 then [ $key, listener, ] = [ null, $key, ]
+      when 2 then null
+      else throw new Error "expected 1 or 2 arguments, got #{arity}"
+    validate_optional.IT_note_$key $key
     validate.IT_listener listener
     R = 0
     for [ registered_key, key_symbol, ] from @key_symbols
+      continue if $key? and ( $key isnt registered_key )
       registered_listeners_and_ctls = ( @listeners.get key_symbol ) ? []
       for idx in [ registered_listeners_and_ctls.length - 1 .. 0 ] by -1
         [ registered_listener, ctl, ] = registered_listeners_and_ctls[ idx ]
@@ -154,7 +158,7 @@ class Intertalk
   #---------------------------------------------------------------------------------------------------------
   _get_ctl : ( $key, listener ) -> R =
     off:      => @off     $key, listener
-    off_all:  => @off_all       listener
+    off_all:  => @off           listener
 
   #---------------------------------------------------------------------------------------------------------
   _listeners_from_key: ( $key ) ->
