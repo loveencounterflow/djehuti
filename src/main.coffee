@@ -197,4 +197,4 @@ class Intertalk
 
 #===========================================================================================================
 _extras         = { Datom, isa, validate, isa_optional, validate_optional, }
-module.exports  = { Intertalk, Note, Results, _extras, }
+module.exports  = { Intertalk, Note, Results, _extras, version: ( require '../package.json' ).version, }
