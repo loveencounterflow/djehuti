@@ -133,7 +133,7 @@ class Intertalk
     return null
 
   #---------------------------------------------------------------------------------------------------------
-  off: ( $key, listener ) ->
+  unsubscribe: ( $key, listener ) ->
     switch arity = arguments.length
       when 1 then [ $key, listener, ] = [ null, $key, ]
       when 2 then null
@@ -157,8 +157,8 @@ class Intertalk
 
   #---------------------------------------------------------------------------------------------------------
   _get_ctl : ( $key, listener ) -> R =
-    off:      => @off     $key, listener
-    off_all:  => @off           listener
+    unsubscribe_this: => @unsubscribe     $key, listener
+    unsubscribe_all:  => @unsubscribe           listener
 
   #---------------------------------------------------------------------------------------------------------
   _listeners_from_key: ( $key ) ->

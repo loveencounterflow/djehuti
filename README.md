@@ -27,8 +27,8 @@
     on the `div_1` element only, but `IT.emit_on_event 'click', 'bar'` will be triggered by any click
     anywhere within the browser document window.
 
-* `off: ( listener ) ->`: unsubscribe `listener` from all notifications.
-* `off: ( $key, listener ) ->`: unsubscribe `listener` from notifications matching `$key`.
+* `unsubscribe: ( listener ) ->`: unsubscribe `listener` from all notifications.
+* `unsubscribe: ( $key, listener ) ->`: unsubscribe `listener` from notifications matching `$key`.
 
 ## Is Done
 
